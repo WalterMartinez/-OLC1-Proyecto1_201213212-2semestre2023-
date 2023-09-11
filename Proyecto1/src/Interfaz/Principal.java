@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
  *
  * @author walte
  */
+
+
 public class Principal extends javax.swing.JFrame {
 
     /**
@@ -22,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         fs = new Files();
+    
+        
     }
 
     /**

@@ -8,111 +8,49 @@ package StatPy;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int DOSPUNTOS = 36;
-  public static final int DISTINTO = 46;
-  public static final int RSTRING = 7;
-  public static final int POR = 27;
-  public static final int RWHILE = 19;
-  public static final int PUNTOYCOMA = 35;
-  public static final int ENTERO = 51;
-  public static final int RVOID = 8;
-  public static final int IDENTI = 50;
-  public static final int RDEFAULT = 17;
-  public static final int RELSE = 11;
-  public static final int IGUALQUE = 42;
-  public static final int MAYORQUE = 38;
-  public static final int IGUAL = 24;
-  public static final int CARACTER = 49;
-  public static final int DIVIDIDO = 28;
-  public static final int RDOUBLE = 4;
-  public static final int INCREMENTO = 47;
-  public static final int RCONSOLE = 12;
-  public static final int RDO = 20;
-  public static final int DECIMAL = 52;
+  public static final int MENOS = 17;
+  public static final int PUNTOYCOMA = 9;
+  public static final int IGUAL = 10;
+  public static final int DECIMAL = 21;
+  public static final int IDENTI = 8;
+  public static final int DIVIDIDO = 19;
+  public static final int RSTRING = 15;
+  public static final int RMAIN = 3;
+  public static final int PARI = 4;
+  public static final int LLAVEI = 6;
+  public static final int PARD = 5;
+  public static final int LLAVED = 7;
+  public static final int RINT = 11;
+  public static final int POR = 18;
+  public static final int RBOOL = 14;
+  public static final int RVOID = 2;
   public static final int EOF = 0;
-  public static final int MAYOROIGUAL = 41;
-  public static final int DECREMENTO = 48;
+  public static final int RDOUBLE = 12;
   public static final int error = 1;
-  public static final int RBARRAS = 22;
-  public static final int CADENA = 2;
-  public static final int MENOS = 26;
-  public static final int RWRITE = 13;
-  public static final int MENOROIGUAL = 40;
-  public static final int RCHAR = 5;
-  public static final int MENORQUE = 37;
-  public static final int RCASE = 15;
-  public static final int PARI = 30;
-  public static final int DISTINTOQUE = 43;
-  public static final int CORI = 34;
-  public static final int PARD = 29;
-  public static final int RPIE = 23;
-  public static final int ROR = 45;
-  public static final int RSWITCH = 14;
-  public static final int RINT = 3;
-  public static final int LLAVEI = 32;
-  public static final int CORD = 33;
-  public static final int RGLOBALES = 21;
-  public static final int RFOR = 18;
-  public static final int RBOOL = 6;
-  public static final int LLAVED = 31;
-  public static final int RBREAK = 16;
-  public static final int DOLAR = 39;
-  public static final int RIF = 10;
-  public static final int RAND = 44;
-  public static final int MAS = 25;
-  public static final int RMAIN = 9;
+  public static final int RCHAR = 13;
+  public static final int ENTERO = 20;
+  public static final int MAS = 16;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "CADENA",
+  "RVOID",
+  "RMAIN",
+  "PARI",
+  "PARD",
+  "LLAVEI",
+  "LLAVED",
+  "IDENTI",
+  "PUNTOYCOMA",
+  "IGUAL",
   "RINT",
   "RDOUBLE",
   "RCHAR",
   "RBOOL",
   "RSTRING",
-  "RVOID",
-  "RMAIN",
-  "RIF",
-  "RELSE",
-  "RCONSOLE",
-  "RWRITE",
-  "RSWITCH",
-  "RCASE",
-  "RBREAK",
-  "RDEFAULT",
-  "RFOR",
-  "RWHILE",
-  "RDO",
-  "RGLOBALES",
-  "RBARRAS",
-  "RPIE",
-  "IGUAL",
   "MAS",
   "MENOS",
   "POR",
   "DIVIDIDO",
-  "PARD",
-  "PARI",
-  "LLAVED",
-  "LLAVEI",
-  "CORD",
-  "CORI",
-  "PUNTOYCOMA",
-  "DOSPUNTOS",
-  "MENORQUE",
-  "MAYORQUE",
-  "DOLAR",
-  "MENOROIGUAL",
-  "MAYOROIGUAL",
-  "IGUALQUE",
-  "DISTINTOQUE",
-  "RAND",
-  "ROR",
-  "DISTINTO",
-  "INCREMENTO",
-  "DECREMENTO",
-  "CARACTER",
-  "IDENTI",
   "ENTERO",
   "DECIMAL"
   };

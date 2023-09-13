@@ -9,8 +9,7 @@ import java_cup.runtime.*;
 
 parser code 
 {:
-    public static String resultado = "";
-
+    public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
     {
@@ -30,26 +29,29 @@ action code
 {:  :}
 
 
+
 //------> Declaración de terminales
-terminal String CADENA;
-terminal String RINT, RDOUBLE,RCHAR, RBOOL, RSTRING, RVOID, RMAIN, RIF,RELSE;
-terminal String RCONSOLE, RWRITE, RSWITCH, RCASE, RBREAK, RDEFAULT, RFOR, RWHILE, RDO;
-terminal String RGLOBALES, RBARRAS, RPIE;
-terminal String IGUAL, MAS, MENOS, POR, DIVIDIDO;
-terminal String PARD, PARI, LLAVED, LLAVEI, CORD, CORI;
-terminal String PUNTOYCOMA, DOSPUNTOS;
-terminal String MENORQUE, MAYORQUE;
-terminal String DOLAR;
-terminal String MENOROIGUAL, MAYOROIGUAL, IGUALQUE, DISTINTOQUE;
-terminal String RAND, ROR;
-terminal String DISTINTO, INCREMENTO, DECREMENTO;
-terminal String CARACTER, IDENTI, ENTERO, DECIMAL;
 
 
+terminal String RVOID, RMAIN, PARI, PARD, LLAVEI, LLAVED;
+terminal String IDENTI, PUNTOYCOMA;
+terminal String IGUAL;
+terminal String RINT, RDOUBLE, RCHAR, RBOOL, RSTRING;
+
+terminal String MAS, MENOS, POR, DIVIDIDO, ENTERO, DECIMAL;
 
 //------> Declaración de no terminales
 non terminal inicio;
+non terminal instatpy;
+non terminal sentencias;
+non terminal declaracion;
+non terminal tipodato;
+non terminal expresion;
+non terminal operacion;
 
+//------> PRECEDENCIA
+precedence left MAS, MENOS;
+precedence left POR, DIVIDIDO;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -57,5 +59,35 @@ start with inicio;
 
 // ------------>  Producciones  <------------
 
-inicio ::= ENTERO
+inicio ::= instatpy
 ;
+
+instatpy ::= RVOID RMAIN PARI PARD LLAVEI sentencias LLAVED 
+;
+
+sentencias ::= sentencias declaracion
+		| declaracion
+;
+declaracion ::=	tipodato IDENTI PUNTOYCOMA
+		| tipodato IDENTI IGUAL expresion PUNTOYCOMA
+;
+
+tipodato ::= 	RINT
+		| RDOUBLE
+		| RCHAR
+		| RBOOL
+		| RSTRING	
+;
+
+
+expresion ::= 	IDENTI
+		| operacion
+;
+
+operacion ::= 	operacion MAS operacion
+		| operacion MENOS operacion
+		| operacion POR operacion
+		| operacion DIVIDIDO operacion
+		| ENTERO
+		| DECIMAL
+;   

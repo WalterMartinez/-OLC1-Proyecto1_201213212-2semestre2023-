@@ -37,19 +37,35 @@ terminal String RVOID, RMAIN, PARI, PARD, LLAVEI, LLAVED;
 terminal String IDENTI, PUNTOYCOMA;
 terminal String IGUAL;
 terminal String RINT, RDOUBLE, RCHAR, RBOOL, RSTRING;
-
 terminal String MAS, MENOS, POR, DIVIDIDO, ENTERO, DECIMAL;
+terminal String CADENA,CARACTER;
+terminal String RTRUE,RFALSE;
+terminal String MENOR, MAYOR, MENORIGUAL, MAYORIGUAL, IGUALIGUAL, DISTINTO;
+terminal String RAND, ROR;
+terminal String NEGADO;
+terminal String RCONSOLE, RWRITE, PUNTO;
+terminal String RIF, RELSE;
+
+
 
 //------> Declaración de no terminales
 non terminal inicio;
 non terminal instatpy;
-non terminal sentencias;
+non terminal listainstruccion;
+non terminal instruccion;
 non terminal declaracion;
 non terminal tipodato;
 non terminal expresion;
-non terminal operacion;
+non terminal imprimir;
+non terminal if;
+
+
+
 
 //------> PRECEDENCIA
+precedence left RAND, ROR;
+precedence right NEGADO;
+precedence left MENOR, MAYOR, MENORIGUAL, MAYORIGUAL, IGUALIGUAL,DISTINTO;
 precedence left MAS, MENOS;
 precedence left POR, DIVIDIDO;
 
@@ -62,15 +78,32 @@ start with inicio;
 inicio ::= instatpy
 ;
 
-instatpy ::= RVOID RMAIN PARI PARD LLAVEI sentencias LLAVED 
+instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion LLAVED 
 ;
 
-sentencias ::= sentencias declaracion
-		| declaracion
+listainstruccion ::= listainstruccion instruccion
+		| instruccion
 ;
+
+instruccion ::= declaracion  
+                | imprimir
+                | if
+;
+
+
 declaracion ::=	tipodato IDENTI PUNTOYCOMA
 		| tipodato IDENTI IGUAL expresion PUNTOYCOMA
 ;
+
+
+imprimir ::=    RCONSOLE PUNTO RWRITE PARI expresion PARD PUNTOYCOMA
+;
+
+if ::=          RIF PARI expresion PARD LLAVEI listainstruccion LLAVED
+                | RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE LLAVEI listainstruccion LLAVED
+                | RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE if
+;
+       
 
 tipodato ::= 	RINT
 		| RDOUBLE
@@ -80,14 +113,23 @@ tipodato ::= 	RINT
 ;
 
 
-expresion ::= 	IDENTI
-		| operacion
-;
-
-operacion ::= 	operacion MAS operacion
-		| operacion MENOS operacion
-		| operacion POR operacion
-		| operacion DIVIDIDO operacion
+expresion ::= 	expresion MAS expresion
+		| expresion MENOS expresion
+		| expresion POR expresion
+		| expresion DIVIDIDO expresion
+                | expresion MENOR expresion
+                | expresion MAYOR expresion
+                | expresion MENORIGUAL expresion
+                | expresion MAYORIGUAL expresion
+                | expresion IGUALIGUAL expresion
+                | expresion DISTINTO expresion
+                | expresion RAND expresion
+                | expresion ROR expresion
+                | NEGADO expresion
 		| ENTERO
 		| DECIMAL
+                | CADENA
+                | CARACTER
+                | RTRUE
+                | RFALSE
 ;   

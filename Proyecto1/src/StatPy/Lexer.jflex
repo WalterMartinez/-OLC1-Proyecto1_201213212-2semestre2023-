@@ -56,6 +56,16 @@ CADENACOMILLASDOBLES = [\"]([^\"\n]|(\\\"))*[\"]
 "if"                    {return new Symbol(sym.RIF,yycolumn,yyline, yytext());}
 "else"                  {return new Symbol(sym.RELSE,yycolumn,yyline, yytext());}
 
+"while"                 {return new Symbol(sym.RWHILE,yycolumn,yyline, yytext());}
+"do"                    {return new Symbol(sym.RDO,yycolumn,yyline, yytext());}
+"for"                   {return new Symbol(sym.RFOR,yycolumn,yyline, yytext());}
+"++"                    {return new Symbol(sym.INCREMENTO,yycolumn,yyline, yytext());}
+"--"                    {return new Symbol(sym.DECREMENTO,yycolumn,yyline, yytext());}
+
+"switch"                {return new Symbol(sym.RSWITCH,yycolumn,yyline, yytext());}
+"case"                  {return new Symbol(sym.RCASE,yycolumn,yyline, yytext());}
+"break"                 {return new Symbol(sym.RBREAK,yycolumn,yyline, yytext());}
+"default"               {return new Symbol(sym.RDEFAULT,yycolumn,yyline, yytext());}
 
 "="     {return new Symbol(sym.IGUAL,yycolumn,yyline, yytext());}
 "+"     {return new Symbol(sym.MAS,yycolumn,yyline, yytext());}
@@ -81,6 +91,8 @@ CADENACOMILLASDOBLES = [\"]([^\"\n]|(\\\"))*[\"]
 "!"     {return new Symbol(sym.NEGADO,yycolumn,yyline, yytext());}
 
 "."     {return new Symbol(sym.PUNTO,yycolumn,yyline, yytext());}
+
+":"     {return new Symbol(sym.DOSPUNTOS,yycolumn,yyline, yytext());}
 
 \n {yychar=1;}
 

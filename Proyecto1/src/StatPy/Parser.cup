@@ -45,6 +45,13 @@ terminal String RAND, ROR;
 terminal String NEGADO;
 terminal String RCONSOLE, RWRITE, PUNTO;
 terminal String RIF, RELSE;
+terminal String RWHILE;
+terminal String RDO;
+terminal String RFOR;
+terminal String DECREMENTO, INCREMENTO;
+terminal String RSWITCH, RCASE, RBREAK, RDEFAULT;
+terminal String DOSPUNTOS;
+       
 
 
 
@@ -58,9 +65,14 @@ non terminal tipodato;
 non terminal expresion;
 non terminal imprimir;
 non terminal if;
+non terminal while;
+non terminal do;
+non terminal for;
 
-
-
+non terminal switch;
+non terminal listacasos;
+non terminal caso;
+non terminal talvezbreak;
 
 //------> PRECEDENCIA
 precedence left RAND, ROR;
@@ -88,6 +100,10 @@ listainstruccion ::= listainstruccion instruccion
 instruccion ::= declaracion  
                 | imprimir
                 | if
+                | while
+                | do
+                | for
+                | switch
 ;
 
 
@@ -103,7 +119,31 @@ if ::=          RIF PARI expresion PARD LLAVEI listainstruccion LLAVED
                 | RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE LLAVEI listainstruccion LLAVED
                 | RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE if
 ;
-       
+
+while ::=       RWHILE PARI expresion PARD LLAVEI listainstruccion LLAVED
+;  
+
+do ::=          RDO LLAVEI listainstruccion LLAVED RWHILE PARI expresion PARD PUNTOYCOMA
+;     
+
+for ::=         RFOR PARI declaracion PUNTOYCOMA expresion PUNTOYCOMA IDENTI INCREMENTO PARD LLAVEI listainstruccion LLAVED
+                | RFOR PARI declaracion PUNTOYCOMA expresion PUNTOYCOMA IDENTI DECREMENTO PARD LLAVEI listainstruccion LLAVED
+;
+
+switch ::=      RSWITCH PARI IDENTI PARD LLAVEI listacasos RDEFAULT DOSPUNTOS listainstruccion LLAVED
+;
+
+listacasos ::=  listacasos caso
+                |caso
+;
+
+caso ::=        RCASE ENTERO DOSPUNTOS talvezbreak
+;
+
+talvezbreak ::= listainstruccion
+                | listainstruccion RBREAK PUNTOYCOMA
+;
+
 
 tipodato ::= 	RINT
 		| RDOUBLE
@@ -132,4 +172,5 @@ expresion ::= 	expresion MAS expresion
                 | CARACTER
                 | RTRUE
                 | RFALSE
+                | IDENTI
 ;   

@@ -42,16 +42,14 @@
             <Property name="text" type="java.lang.String" value="Analizador"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Analizador 1: STATPY"/>
+                <Property name="text" type="java.lang.String" value="Analizador 1 : StatPy"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
               <Properties>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Analizador 2: JSON"/>
+                <Property name="text" type="java.lang.String" value="Analizador 2 : JSON"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -65,6 +63,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ejecutar Archivo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -1,0 +1,71 @@
+// ------------  Paquete e importaciones ------------
+package Json;
+
+import java_cup.runtime.*;
+
+
+//------> Codigo para el parser
+//------> Declaracion de variables, funciones y funciones de error
+
+parser code 
+{:
+    public String resultado = ""; 
+
+    public void syntax_error(Symbol s)
+    {
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+            data.Info.listaErrores.add(new data.Error("Error Sintactico", "No reconocido " + s.value , s.right , s.left ));
+    }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+            data.Info.listaErrores.add(new data.Error("Error Sintactico", "No reconocido " + s.value , s.right , s.left ));
+   
+    }
+
+:}
+
+
+//------> Codigo para las acciones gramaticales (no tocar)
+action code
+{:  :}
+
+
+//------> Declaración de terminales
+terminal String ENTERO, DECIMAL;
+terminal String CADENA;
+terminal String LLAVEI, LLAVED, DOSPUNTOS, COMA;
+
+//------> Declaración de no terminales
+non terminal inicio;
+non terminal json;
+non terminal listaentrada;
+non terminal entrada;
+non terminal linea;
+
+//------> Definir Simbolo Inicial
+start with inicio; 
+
+
+// ------------>  Producciones  <------------
+
+inicio ::= json
+;
+
+json ::= LLAVEI listaentrada LLAVED
+;
+
+listaentrada ::=    listaentrada entrada
+                    | entrada
+;
+
+entrada ::=         CADENA:a DOSPUNTOS CADENA:b COMA entrada    {: data.Info.listavariables.put(a.toString(),b.toString()); :}
+                    | CADENA:a DOSPUNTOS DECIMAL:b COMA entrada {: data.Info.listavariables.put(a.toString(),b.toString()); :}
+                    | error COMA
+                    | linea
+;
+
+linea ::=           CADENA:a DOSPUNTOS CADENA:b             {: data.Info.listavariables.put(a.toString(),b.toString()); :}
+                    | CADENA:a DOSPUNTOS DECIMAL:b          {: data.Info.listavariables.put(a.toString(),b.toString()); :}
+;

@@ -5,6 +5,7 @@
 package Interfaz;
 
 import Utilidades.Files;
+import Utilidades.Funcion;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -20,6 +21,9 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    public static String textoaanalizar = "";
+    public static String nombrearchivo = "";
+    
     private Files fs;
     public Principal() {
         initComponents();
@@ -51,8 +55,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -151,19 +155,22 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Analizador");
 
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("Analizador 1: STATPY");
-        jMenu2.add(jCheckBoxMenuItem1);
+        jMenuItem8.setText("Analizador 1 : StatPy");
+        jMenu2.add(jMenuItem8);
 
-        jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("Analizador 2: JSON");
-        jMenu2.add(jCheckBoxMenuItem2);
+        jMenuItem9.setText("Analizador 2 : JSON");
+        jMenu2.add(jMenuItem9);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Ejecutar");
 
         jMenuItem4.setText("Ejecutar Archivo");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
@@ -208,17 +215,29 @@ public class Principal extends javax.swing.JFrame {
         int resultado = SelectorArchivos.showOpenDialog(this);
         File archivo = SelectorArchivos.getSelectedFile();
         String ruta = archivo+" ";
+        nombrearchivo = "";
+        nombrearchivo = archivo.getName().toLowerCase();
         System.out.println(ruta);
+        System.out.println(nombrearchivo);
         
         if ((archivo == null) || (archivo.getName().equals(""))){
             JOptionPane.showMessageDialog(this, "Nombre de archivo inválido", "Nombre de archivo inválido", JOptionPane.ERROR_MESSAGE);
         }
         else{
+            jTextArea1.setText("");
             jTextArea1.setText(fs.readFile(archivo));
-            
+            textoaanalizar = fs.readFile(archivo);
         }
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+            String entrada2 = Interfaz.Principal.textoaanalizar;
+            
+            Funcion.analizar2(entrada2);
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,8 +275,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -270,6 +287,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

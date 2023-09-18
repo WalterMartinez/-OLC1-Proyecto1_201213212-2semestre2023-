@@ -51,7 +51,10 @@ terminal String RFOR;
 terminal String DECREMENTO, INCREMENTO;
 terminal String RSWITCH, RCASE, RBREAK, RDEFAULT;
 terminal String DOSPUNTOS;
-       
+terminal String RGLOBALES, RBARRAS, RPIE;
+terminal String CORI, CORD, DOLAR;
+terminal String RNEWVAL;
+terminal String COMA;       
 
 
 
@@ -73,6 +76,11 @@ non terminal switch;
 non terminal listacasos;
 non terminal caso;
 non terminal talvezbreak;
+non terminal globales;
+non terminal listacontenido;
+non terminal contenido;
+non terminal listaasigna;
+non terminal asigna;
 
 //------> PRECEDENCIA
 precedence left RAND, ROR;
@@ -90,9 +98,9 @@ start with inicio;
 inicio ::= instatpy
 ;
 
-instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion LLAVED 
+instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion globales listacontenido LLAVED 
 ;
-
+ 
 listainstruccion ::= listainstruccion instruccion
 		| instruccion
 ;
@@ -174,4 +182,26 @@ expresion ::= 	expresion MAS expresion
                 | RTRUE
                 | RFALSE
                 | IDENTI
-;   
+;
+
+globales ::=        RVOID RGLOBALES PARI PARD LLAVEI listaasigna LLAVED
+;
+
+listaasigna ::=     listaasigna asigna PUNTOYCOMA
+                    | asigna PUNTOYCOMA
+                    | error PUNTOYCOMA
+;
+
+asigna ::=          RSTRING IDENTI IGUAL CADENA
+                    | RDOUBLE IDENTI IGUAL DECIMAL
+                    | RSTRING IDENTI IGUAL DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED
+                    | RDOUBLE IDENTI IGUAL DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED
+;
+
+listacontenido ::=  listacontenido contenido
+                    | contenido
+;
+
+contenido ::=       globales
+                    | instruccion
+;

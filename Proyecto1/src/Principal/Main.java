@@ -21,10 +21,10 @@ public class Main {
     Principal p = new Principal();
     p.setVisible(true);
    // ANALIZADOR DE STATPY 
-   //analizadores("src/StatPy/", "Lexer.jflex","Parser.cup");
+   analizadores("src/StatPy/", "Lexer.jflex","Parser.cup");
    
    //analizador JSON
-   analizadores("src/Json/", "Lexer2.jflex","Parser2.cup");
+   //analizadores("src/Json/", "Lexer2.jflex","Parser2.cup");
      
    String entrada2 = """
                      // Comentario Simple
@@ -79,5 +79,6 @@ public class Main {
             System.out.println("Error fatal en compilación de entrada.");
             System.out.println(e);
         } 
-    } 
+    }
+   
 }

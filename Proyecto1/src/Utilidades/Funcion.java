@@ -39,7 +39,16 @@ public static void analizadores(String ruta, String jflexFile, String cupFile){
             System.out.println(e);
         } 
     } 
-
+     public static void analizar1 (String entrada){
+        try {
+            StatPy.Lexer lexer = new StatPy.Lexer(new StringReader(entrada)); 
+            StatPy.Parser parser = new StatPy.Parser(lexer);
+            parser.parse();
+        } catch (Exception e) {
+            System.out.println("Error fatal en compilación de entrada.");
+            System.out.println(e);
+        } 
+    }
 }
 
 

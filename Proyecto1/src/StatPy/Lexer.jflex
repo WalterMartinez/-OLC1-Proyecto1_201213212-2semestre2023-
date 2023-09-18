@@ -67,6 +67,13 @@ CADENACOMILLASDOBLES = [\"]([^\"\n]|(\\\"))*[\"]
 "break"                 {return new Symbol(sym.RBREAK,yycolumn,yyline, yytext());}
 "default"               {return new Symbol(sym.RDEFAULT,yycolumn,yyline, yytext());}
 
+"definirglobales"       {return new Symbol(sym.RGLOBALES,yycolumn,yyline, yytext());}
+"graficabarras"         {return new Symbol(sym.RBARRAS,yycolumn,yyline, yytext());}
+"graficapie"            {return new Symbol(sym.RPIE,yycolumn,yyline, yytext());}
+"newvalor"              {return new Symbol(sym.RNEWVAL,yycolumn,yyline, yytext());}
+
+
+
 "="     {return new Symbol(sym.IGUAL,yycolumn,yyline, yytext());}
 "+"     {return new Symbol(sym.MAS,yycolumn,yyline, yytext());}
 "-"     {return new Symbol(sym.MENOS,yycolumn,yyline, yytext());}
@@ -93,6 +100,12 @@ CADENACOMILLASDOBLES = [\"]([^\"\n]|(\\\"))*[\"]
 "."     {return new Symbol(sym.PUNTO,yycolumn,yyline, yytext());}
 
 ":"     {return new Symbol(sym.DOSPUNTOS,yycolumn,yyline, yytext());}
+
+"["     {return new Symbol(sym.CORI,yycolumn,yyline, yytext());}
+"]"     {return new Symbol(sym.CORD,yycolumn,yyline, yytext());}
+"$"     {return new Symbol(sym.DOLAR,yycolumn,yyline, yytext());}
+","     {return new Symbol(sym.COMA,yycolumn,yyline, yytext());}
+
 
 \n {yychar=1;}
 

@@ -178,6 +178,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.setText("Reporte");
 
         jMenuItem5.setText("Reporte de Tokens");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuItem6.setText("Reporte de Errores Lèxicos");
@@ -226,18 +231,27 @@ public class Principal extends javax.swing.JFrame {
         else{
             jTextArea1.setText("");
             jTextArea1.setText(fs.readFile(archivo));
-            textoaanalizar = fs.readFile(archivo);
+            
+            
         }
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-            String entrada2 = Interfaz.Principal.textoaanalizar;
-            
-            Funcion.analizar2(entrada2);
+            textoaanalizar = jTextArea1.getText();
+            Funcion.analizar2(textoaanalizar);
+            System.out.println(textoaanalizar);    
+            data.Info.ajson.clear();
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        data.Info.mostrarinfo();
+        data.ListaArchivos.mostrarinfo();
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -180,7 +180,8 @@ class CUP$Parser$actions {
           case 2: // json ::= LLAVEI listaentrada LLAVED 
             {
               Object RESULT =null;
-
+		 System.out.println("cuantas veces pasa");
+                                                                
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("json",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -213,7 +214,9 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		 data.Info.listavariables.put(a.toString(),b.toString()); 
+		  data.Info.listavariables.put(a.toString(),b.toString()); 
+                                                                    data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                    data.ListaArchivos.listaarchivos.add(archivo1); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("entrada",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -228,7 +231,9 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		 data.Info.listavariables.put(a.toString(),b.toString()); 
+		 data.Info.listavariables.put(a.toString(),b.toString());
+                                                                    data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                    data.ListaArchivos.listaarchivos.add(archivo1); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("entrada",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -261,7 +266,9 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 data.Info.listavariables.put(a.toString(),b.toString()); 
+		  data.Info.listavariables.put(a.toString(),b.toString());
+                                                                data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                data.ListaArchivos.listaarchivos.add(archivo1); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("linea",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -276,7 +283,9 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 data.Info.listavariables.put(a.toString(),b.toString()); 
+		  data.Info.listavariables.put(a.toString(),b.toString());
+                                                                data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                data.ListaArchivos.listaarchivos.add(archivo1); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("linea",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

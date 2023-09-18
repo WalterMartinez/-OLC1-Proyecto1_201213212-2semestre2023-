@@ -24,7 +24,7 @@ public class Main {
    //analizadores("src/StatPy/", "Lexer.jflex","Parser.cup");
    
    //analizador JSON
-   //analizadores("src/Json/", "Lexer2.jflex","Parser2.cup");
+   analizadores("src/Json/", "Lexer2.jflex","Parser2.cup");
      
    String entrada2 = """
                      // Comentario Simple
@@ -41,13 +41,13 @@ public class Main {
                      }
                      """;
    
-    analizar2(entrada2);
+    //analizar2(entrada2);
     
     for (String i : data.Info.listavariables.keySet()){
         System.out.println("key: " + i + " value: " + data.Info.listavariables.get(i) );
     }
-    
-        data.Info.listavariables.get("ejex1");
+        String variable100 = "\"titulo\"";
+        System.out.println(" el valor del registro val1 "+ data.Info.listavariables.get(variable100));    
     
     System.out.println("\n### Errores ###");
     data.Info.listaErrores.forEach((t) -> {

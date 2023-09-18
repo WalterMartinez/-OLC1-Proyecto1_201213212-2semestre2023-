@@ -53,19 +53,28 @@ start with inicio;
 inicio ::= json
 ;
 
-json ::= LLAVEI listaentrada LLAVED
+json ::= LLAVEI listaentrada LLAVED                             {: System.out.println("cuantas veces pasa");
+                                                                :}         
 ;
 
 listaentrada ::=    listaentrada entrada
                     | entrada
 ;
 
-entrada ::=         CADENA:a DOSPUNTOS CADENA:b COMA entrada    {: data.Info.listavariables.put(a.toString(),b.toString()); :}
-                    | CADENA:a DOSPUNTOS DECIMAL:b COMA entrada {: data.Info.listavariables.put(a.toString(),b.toString()); :}
+entrada ::=         CADENA:a DOSPUNTOS CADENA:b COMA entrada    {:  data.Info.listavariables.put(a.toString(),b.toString()); 
+                                                                    data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                    data.ListaArchivos.listaarchivos.add(archivo1); :}
+                    | CADENA:a DOSPUNTOS DECIMAL:b COMA entrada {: data.Info.listavariables.put(a.toString(),b.toString());
+                                                                    data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                    data.ListaArchivos.listaarchivos.add(archivo1); :}
                     | error COMA
                     | linea
 ;
 
-linea ::=           CADENA:a DOSPUNTOS CADENA:b             {: data.Info.listavariables.put(a.toString(),b.toString()); :}
-                    | CADENA:a DOSPUNTOS DECIMAL:b          {: data.Info.listavariables.put(a.toString(),b.toString()); :}
+linea ::=           CADENA:a DOSPUNTOS CADENA:b             {:  data.Info.listavariables.put(a.toString(),b.toString());
+                                                                data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                data.ListaArchivos.listaarchivos.add(archivo1); :}
+                    | CADENA:a DOSPUNTOS DECIMAL:b          {:  data.Info.listavariables.put(a.toString(),b.toString());
+                                                                data.Archivo archivo1 = new data.Archivo(Interfaz.Principal.nombrearchivo,a,b);
+                                                                data.ListaArchivos.listaarchivos.add(archivo1); :}
 ;

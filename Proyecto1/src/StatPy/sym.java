@@ -41,8 +41,11 @@ public class sym {
   public static final int MENOS = 17;
   public static final int MENOR = 26;
   public static final int RWRITE = 36;
+  public static final int RTITULO = 58;
   public static final int RCHAR = 13;
   public static final int MAYOR = 27;
+  public static final int RTITULOY = 62;
+  public static final int RTITULOX = 61;
   public static final int RCASE = 46;
   public static final int PUNTO = 37;
   public static final int IGUALIGUAL = 30;
@@ -52,10 +55,12 @@ public class sym {
   public static final int RPIE = 52;
   public static final int RSWITCH = 45;
   public static final int ROR = 33;
+  public static final int REJEX = 59;
   public static final int RINT = 11;
   public static final int LLAVEI = 6;
   public static final int CORD = 54;
   public static final int RGLOBALES = 50;
+  public static final int RVALORES = 60;
   public static final int RFOR = 42;
   public static final int RBOOL = 14;
   public static final int LLAVED = 7;
@@ -124,7 +129,12 @@ public class sym {
   "CORD",
   "DOLAR",
   "RNEWVAL",
-  "COMA"
+  "COMA",
+  "RTITULO",
+  "REJEX",
+  "RVALORES",
+  "RTITULOX",
+  "RTITULOY"
   };
 }
 

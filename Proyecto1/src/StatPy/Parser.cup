@@ -55,7 +55,7 @@ terminal String RGLOBALES, RBARRAS, RPIE;
 terminal String CORI, CORD, DOLAR;
 terminal String RNEWVAL;
 terminal String COMA;       
-
+terminal String RTITULO, REJEX, RVALORES, RTITULOX, RTITULOY;
 
 
 //------> Declaración de no terminales
@@ -81,6 +81,14 @@ non terminal listacontenido;
 non terminal contenido;
 non terminal listaasigna;
 non terminal asigna;
+non terminal graficabarras;
+non terminal isntbarras;
+non terminal listabarras;
+non terminal btitulo;
+non terminal bnombres;
+non terminal bvalores;
+
+
 
 //------> PRECEDENCIA
 precedence left RAND, ROR;
@@ -204,4 +212,40 @@ listacontenido ::=  listacontenido contenido
 
 contenido ::=       globales
                     | instruccion
+                    | graficabarras
 ;
+
+graficabarras ::=   RVOID RBARRAS PARI PARD LLAVEI isntbarras LLAVED
+;
+
+isntbarras ::=      listabarras bnombres listabarras bvalores listabarras
+                    | listabarras bvalores listabarras bnombres listabarras
+                    | bnombres listabarras bvalores listabarras
+                    | bvalores listabarras bnombres listabarras
+                    | listabarras bnombres bvalores listabarras
+                    | listabarras bvalores bnombres listabarras
+                    | listabarras bnombres listabarras bvalores
+                    | listabarras bvalores listabarras bnombres
+                    | listabarras bnombres bvalores
+                    | listabarras bvalores bnombres
+                    | bnombres listabarras bvalores
+                    | bvalores listabarras bnombres
+                    | bnombres bvalores listabarras
+                    | bvalores bnombres listabarras
+;
+
+listabarras ::=     listabarras btitulo
+                    | btitulo 
+                    | error PUNTOYCOMA
+                    
+;
+
+btitulo ::=         RSTRING RTITULO IGUAL IDENTI PUNTOYCOMA
+                    | RSTRING RTITULO IGUAL CADENA PUNTOYCOMA
+                    | RSTRING RTITULOX IGUAL IDENTI PUNTOYCOMA
+                    | RSTRING RTITULOX IGUAL CADENA PUNTOYCOMA
+                    | RSTRING RTITULOY IGUAL IDENTI PUNTOYCOMA
+                    | RSTRING RTITULOY IGUAL CADENA PUNTOYCOMA
+                    
+;
+

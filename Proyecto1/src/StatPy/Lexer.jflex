@@ -72,6 +72,12 @@ CADENACOMILLASDOBLES = [\"]([^\"\n]|(\\\"))*[\"]
 "graficapie"            {return new Symbol(sym.RPIE,yycolumn,yyline, yytext());}
 "newvalor"              {return new Symbol(sym.RNEWVAL,yycolumn,yyline, yytext());}
 
+"titulo"                {return new Symbol(sym.RTITULO,yycolumn,yyline, yytext());}
+"ejex"                  {return new Symbol(sym.REJEX,yycolumn,yyline, yytext());}
+"valores"               {return new Symbol(sym.RVALORES,yycolumn,yyline, yytext());}
+"titulox"               {return new Symbol(sym.RTITULOX,yycolumn,yyline, yytext());}
+"tituloy"               {return new Symbol(sym.RTITULOY,yycolumn,yyline, yytext());}
+    
 
 
 "="     {return new Symbol(sym.IGUAL,yycolumn,yyline, yytext());}

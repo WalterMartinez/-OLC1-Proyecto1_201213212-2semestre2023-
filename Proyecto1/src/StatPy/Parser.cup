@@ -2,6 +2,7 @@
 package StatPy;
 
 import java_cup.runtime.*;
+import java.util.LinkedList;
 
 
 //------> Codigo para el parser
@@ -87,7 +88,14 @@ non terminal listabarras;
 non terminal btitulo;
 non terminal bnombres;
 non terminal bvalores;
-
+non terminal listaejex;
+non terminal elementoejex;
+non terminal graficapie;
+non terminal instpie;
+non terminal listabvalores, elementovalores;
+non terminal listapie, pnombre, pvariable;
+non terminal ptitulo, listaejexp, elementoejexp;
+non terminal elementovaloresp, listapvariable;
 
 
 //------> PRECEDENCIA
@@ -106,14 +114,14 @@ start with inicio;
 inicio ::= instatpy
 ;
 
-instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion globales listacontenido LLAVED 
+instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion:lista globales listacontenido LLAVED     {:  :}
 ;
  
-listainstruccion ::= listainstruccion instruccion
-		| instruccion
+listainstruccion ::= listainstruccion instruccion     {: :}
+		| instruccion:val       {: :}
 ;
 
-instruccion ::= declaracion  
+instruccion ::= declaracion             {: :}
                 | imprimir
                 | if
                 | while
@@ -123,12 +131,28 @@ instruccion ::= declaracion
 ;
 
 
-declaracion ::=	tipodato IDENTI PUNTOYCOMA
-		| tipodato IDENTI IGUAL expresion PUNTOYCOMA
+declaracion ::=	tipodato IDENTI:a PUNTOYCOMA                    {:
+                                                                System.out.println(a.toString()+" = none");
+                                                                Utilidades.Funcion.traducciontexto +=  a.toString()+" = none"+"\n";                                                                
+                                                                :}
+                | IDENTI:a IGUAL expresion:val PUNTOYCOMA                     {:
+                                                                System.out.println(a.toString()+" = "+val);
+                                                                Utilidades.Funcion.traducciontexto +=  a.toString()+" = "+val+"\n";
+                                                                        :}
+		| tipodato IDENTI:a IGUAL expresion:val PUNTOYCOMA    {:
+                                                                System.out.println(a.toString()+" = "+val);
+                                                                Utilidades.Funcion.traducciontexto +=  a.toString()+" = "+val+"\n";
+                                                                
+
+                                                                :}
 ;
 
 
-imprimir ::=    RCONSOLE PUNTO RWRITE PARI expresion PARD PUNTOYCOMA
+imprimir ::=    RCONSOLE PUNTO RWRITE PARI expresion:val PARD PUNTOYCOMA    {:
+                                                                            System.out.println("print("+val+")");
+                                                                            Utilidades.Funcion.traducciontexto +=  "print("+val+")"+"\n";
+                                                                
+                                                                            :}
 
 ;
 
@@ -143,8 +167,8 @@ while ::=       RWHILE PARI expresion PARD LLAVEI listainstruccion LLAVED
 do ::=          RDO LLAVEI listainstruccion LLAVED RWHILE PARI expresion PARD PUNTOYCOMA
 ;     
 
-for ::=         RFOR PARI declaracion PUNTOYCOMA expresion PUNTOYCOMA IDENTI INCREMENTO PARD LLAVEI listainstruccion LLAVED
-                | RFOR PARI declaracion PUNTOYCOMA expresion PUNTOYCOMA IDENTI DECREMENTO PARD LLAVEI listainstruccion LLAVED
+for ::=         RFOR PARI tipodato IDENTI IGUAL ENTERO PUNTOYCOMA expresion PUNTOYCOMA IDENTI INCREMENTO PARD LLAVEI listainstruccion LLAVED
+                | RFOR PARI tipodato IDENTI IGUAL ENTERO PUNTOYCOMA expresion PUNTOYCOMA IDENTI DECREMENTO PARD LLAVEI listainstruccion LLAVED
 ;
 
 switch ::=      RSWITCH PARI IDENTI PARD LLAVEI listacasos RDEFAULT DOSPUNTOS listainstruccion LLAVED
@@ -170,26 +194,26 @@ tipodato ::= 	RINT
 ;
 
 
-expresion ::= 	expresion MAS expresion
-		| expresion MENOS expresion
-		| expresion POR expresion
-		| expresion DIVIDIDO expresion
-                | expresion MENOR expresion
-                | expresion MAYOR expresion
-                | expresion MENORIGUAL expresion
-                | expresion MAYORIGUAL expresion
-                | expresion IGUALIGUAL expresion
-                | expresion DISTINTO expresion
-                | expresion RAND expresion
-                | expresion ROR expresion
-                | NEGADO expresion
-		| ENTERO
-		| DECIMAL
-                | CADENA
-                | CARACTER
-                | RTRUE
-                | RFALSE
-                | IDENTI
+expresion ::= 	expresion:a MAS expresion:b                 {: RESULT = a.toString()+" + "+b.toString(); :}
+		| expresion:a MENOS expresion:b             {: RESULT = a.toString()+" - "+b.toString(); :}
+		| expresion:a POR expresion:b               {: RESULT = a.toString()+" * "+b.toString(); :}
+		| expresion:a DIVIDIDO expresion:b          {: RESULT = a.toString()+" / "+b.toString(); :}
+                | expresion:a MENOR expresion:b             {: RESULT = a.toString()+" < "+b.toString(); :}
+                | expresion:a MAYOR expresion:b             {: RESULT = a.toString()+" > "+b.toString(); :}
+                | expresion:a MENORIGUAL expresion:b        {: RESULT = a.toString()+" <= "+b.toString(); :}
+                | expresion:a MAYORIGUAL expresion:b        {: RESULT = a.toString()+" >= "+b.toString(); :}
+                | expresion:a IGUALIGUAL expresion:b        {: RESULT = a.toString()+" == "+b.toString(); :}     
+                | expresion:a DISTINTO expresion:b          {: RESULT = a.toString()+" != "+b.toString(); :}
+                | expresion:a RAND expresion:b              {: RESULT = a.toString()+" and "+b.toString(); :}
+                | expresion:a ROR expresion:b               {: RESULT = a.toString()+" or "+b.toString(); :}
+                | NEGADO expresion:a                        {: RESULT = "not "+a.toString(); :}
+		| ENTERO:val                                {: RESULT = val; :}
+		| DECIMAL:val                               {: RESULT = val; :}
+                | CADENA:val                                {: RESULT = val; :}
+                | CARACTER:val                              {: RESULT = val; :}
+                | RTRUE:val                                 {: RESULT = val; :}
+                | RFALSE:val                                {: RESULT = val; :}
+                | IDENTI:val                                {: RESULT = val; :}
 ;
 
 globales ::=        RVOID RGLOBALES PARI PARD LLAVEI listaasigna LLAVED
@@ -213,6 +237,7 @@ listacontenido ::=  listacontenido contenido
 contenido ::=       globales
                     | instruccion
                     | graficabarras
+                    | graficapie
 ;
 
 graficabarras ::=   RVOID RBARRAS PARI PARD LLAVEI isntbarras LLAVED
@@ -242,10 +267,92 @@ listabarras ::=     listabarras btitulo
 
 btitulo ::=         RSTRING RTITULO IGUAL IDENTI PUNTOYCOMA
                     | RSTRING RTITULO IGUAL CADENA PUNTOYCOMA
+                    | RSTRING RTITULO IGUAL DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED PUNTOYCOMA
                     | RSTRING RTITULOX IGUAL IDENTI PUNTOYCOMA
                     | RSTRING RTITULOX IGUAL CADENA PUNTOYCOMA
+                    | RSTRING RTITULOX IGUAL DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED PUNTOYCOMA
                     | RSTRING RTITULOY IGUAL IDENTI PUNTOYCOMA
                     | RSTRING RTITULOY IGUAL CADENA PUNTOYCOMA
+                    | RSTRING RTITULOY IGUAL DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED PUNTOYCOMA
                     
 ;
+
+bnombres ::=        RSTRING CORI CORD REJEX IGUAL LLAVEI listaejex LLAVED PUNTOYCOMA
+;
+
+listaejex ::=       listaejex COMA elementoejex 
+                    | elementoejex
+;
+
+elementoejex ::=    CADENA
+                    | IDENTI
+                    | DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED
+;
+
+bvalores ::=        RDOUBLE CORI CORD RVALORES IGUAL LLAVEI listabvalores LLAVED PUNTOYCOMA
+;
+
+listabvalores ::=   listabvalores COMA elementovalores
+                    | elementovalores
+;
+
+elementovalores ::= DECIMAL
+                    | IDENTI
+                    | DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED
+;
+
+graficapie ::=       RVOID RPIE PARI PARD LLAVEI instpie LLAVED
+;
+
+instpie ::=         listapie pnombre listapie pvariable listapie
+                    | listapie pvariable listapie pnombre listapie
+                    | pnombre listapie pvariable listapie
+                    | pvariable listapie pnombre listapie
+                    | listapie pnombre pvariable listapie
+                    | listapie pvariable pnombre listapie
+                    | listapie pnombre listapie pvariable
+                    | listapie pvariable listapie pnombre
+                    | listapie pnombre pvariable
+                    | listapie pvariable pnombre
+                    | pnombre listapie pvariable
+                    | pvariable listapie pnombre
+                    | pnombre pvariable listapie
+                    | pvariable pnombre listapie                   
+;
+
+listapie ::=        listapie ptitulo
+                    | ptitulo 
+                    | error PUNTOYCOMA
+;
+
+ptitulo ::=         RSTRING RTITULO IGUAL IDENTI PUNTOYCOMA
+                    | RSTRING RTITULO IGUAL CADENA PUNTOYCOMA  
+                    | RSTRING RTITULO IGUAL DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED PUNTOYCOMA  
+                    
+;
+
+pnombre ::=         RSTRING CORI CORD REJEX IGUAL LLAVEI listaejexp LLAVED PUNTOYCOMA
+;
+
+listaejexp ::=      listaejexp COMA elementoejexp 
+                    | elementoejexp
+;
+
+elementoejexp ::=   CADENA
+                    | IDENTI
+                    | DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED
+;
+
+pvariable ::=        RDOUBLE CORI CORD RVALORES IGUAL LLAVEI listapvariable LLAVED PUNTOYCOMA
+;
+
+listapvariable ::=   listapvariable COMA elementovaloresp
+                    | elementovaloresp
+;
+
+elementovaloresp ::= DECIMAL
+                    | IDENTI
+                    | DOLAR LLAVEI RNEWVAL COMA CADENA COMA CADENA LLAVED
+;
+ 
 

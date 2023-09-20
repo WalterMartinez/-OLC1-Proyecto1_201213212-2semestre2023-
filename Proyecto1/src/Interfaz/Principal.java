@@ -262,7 +262,11 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
             textoaanalizar = jTextArea1.getText();
             Funcion.analizar1(textoaanalizar);
-            System.out.println(textoaanalizar);
+            jTextArea2.setText(Funcion.traducciontexto);
+            //System.out.println(textoaanalizar);
+            
+            Funcion.imprimirlista();
+            
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**

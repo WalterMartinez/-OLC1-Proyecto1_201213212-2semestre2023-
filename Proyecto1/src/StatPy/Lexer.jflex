@@ -35,8 +35,8 @@ CADENACOMILLASDOBLES = [\"]([^\"\n]|(\\\"))*[\"]
 %%
 // ------------  Reglas Lexicas -------------------
 
-{COMENTARIO}            {}
-{COMENTMULTILINEA}      {}
+{COMENTARIO}            {System.out.println(yytext());}
+{COMENTMULTILINEA}      {System.out.println(yytext());}
 {CADENACOMILLASDOBLES}  {return new Symbol(sym.CADENA,yycolumn,yyline, yytext());}
 {CARACTER}              {return new Symbol(sym.CARACTER,yycolumn,yyline, yytext());}
 

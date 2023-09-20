@@ -14,6 +14,31 @@ import java.util.LinkedList;
 public class Funcion {
     public LinkedList lista = new LinkedList();
     
+    public static int contador = 0;
+    public static LinkedList<String> traduccion = new LinkedList<>();
+    
+    
+    
+    public static String traducciontexto = "";
+
+public static void imprimirlista (){
+
+            
+            try {
+            // Código que puede arrojar una excepción
+            traduccion.forEach((valor) -> {
+                System.out.println(valor);
+                
+            });
+                System.out.println("se imprimio bien la traduccion");
+                
+            } catch(Exception e) {
+            // Manejo de la excepción
+            System.err.println("ERROR NO SE PUEDE IMPRIMIR LA LISTA " + e.getMessage());
+            }
+
+}    
+    
 public static void analizadores(String ruta, String jflexFile, String cupFile){
         try {
             String opcionesJflex[] =  {ruta+jflexFile,"-d",ruta};
@@ -49,6 +74,19 @@ public static void analizadores(String ruta, String jflexFile, String cupFile){
             System.out.println(e);
         } 
     }
+     public static LinkedList<String> tabulaciones (LinkedList<String> lista){
+         String tabs = "";
+         for(int i = 0; i < contador; i++){
+             tabs = "\t"+tabs;
+         }
+         
+         for(int i =0; i< lista.size(); i++){
+             lista.set(i, tabs+lista.get(i));
+         }
+         return lista;
+     }
+     
+     
 }
 
 

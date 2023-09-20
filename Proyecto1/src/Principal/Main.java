@@ -25,7 +25,7 @@ public class Main {
    
    //analizador JSON
    //analizadores("src/Json/", "Lexer2.jflex","Parser2.cup");
-     
+   
    String entrada2 = """
                      // Comentario Simple
                      /* Comentario

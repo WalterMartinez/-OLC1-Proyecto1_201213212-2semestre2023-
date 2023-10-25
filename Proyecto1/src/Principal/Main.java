@@ -43,6 +43,8 @@ public class Main {
    
     //analizar2(entrada2);
     
+    
+    
     for (String i : data.Info.listavariables.keySet()){
         System.out.println("key: " + i + " value: " + data.Info.listavariables.get(i) );
     }

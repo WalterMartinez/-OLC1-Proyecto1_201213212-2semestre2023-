@@ -62,7 +62,7 @@ terminal String RTITULO, REJEX, RVALORES, RTITULOX, RTITULOY;
 //------> Declaración de no terminales
 non terminal inicio;
 non terminal instatpy;
-non terminal listainstruccion;
+non terminal LinkedList listainstruccion;
 non terminal instruccion;
 non terminal declaracion;
 non terminal tipodato;
@@ -114,16 +114,23 @@ start with inicio;
 inicio ::= instatpy
 ;
 
-instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion:lista globales listacontenido LLAVED     {:  :}
+instatpy ::= RVOID RMAIN PARI PARD LLAVEI listainstruccion:lista globales listacontenido LLAVED     {: //Utilidades.Funcion.traduccion = lista; :}
 ;
  
-listainstruccion ::= listainstruccion instruccion     {: :}
-		| instruccion:val       {: :}
+listainstruccion ::= listainstruccion:lista instruccion:val     {:
+                                                                //lista.addAll((LinkedList) val);
+                                                                //RESULT = (LinkedList) lista;
+                                                                :}
+		| instruccion:val       {: 
+                                        //LinkedList<String> lista = new LinkedList<>();
+                                        //lista.addAll((LinkedList) val);
+                                        //RESULT = (LinkedList) lista;
+                                         :}
 ;
 
-instruccion ::= declaracion             {: :}
-                | imprimir
-                | if
+instruccion ::= declaracion:val             {:  :}
+                | imprimir:val              {:  :}
+                | if:val                    {:  :}
                 | while
                 | do
                 | for
@@ -132,33 +139,70 @@ instruccion ::= declaracion             {: :}
 
 
 declaracion ::=	tipodato IDENTI:a PUNTOYCOMA                    {:
+                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                //lista.add(a.toString()+" = none");
+                                                                //RESULT = lista;
                                                                 System.out.println(a.toString()+" = none");
                                                                 Utilidades.Funcion.traducciontexto +=  a.toString()+" = none"+"\n";                                                                
                                                                 :}
-                | IDENTI:a IGUAL expresion:val PUNTOYCOMA                     {:
+                | IDENTI:a IGUAL expresion:val PUNTOYCOMA                       {:
                                                                 System.out.println(a.toString()+" = "+val);
                                                                 Utilidades.Funcion.traducciontexto +=  a.toString()+" = "+val+"\n";
-                                                                        :}
+                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                //lista.add(a.toString()+" = "+val);
+                                                                //RESULT = lista;              
+                                                                                :}
 		| tipodato IDENTI:a IGUAL expresion:val PUNTOYCOMA    {:
                                                                 System.out.println(a.toString()+" = "+val);
                                                                 Utilidades.Funcion.traducciontexto +=  a.toString()+" = "+val+"\n";
-                                                                
+                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                //lista.add(a.toString()+" = "+val);
+                                                                //RESULT = lista;
 
                                                                 :}
 ;
 
 
 imprimir ::=    RCONSOLE PUNTO RWRITE PARI expresion:val PARD PUNTOYCOMA    {:
+                                                                            //LinkedList<String> lista = new LinkedList<>();
+                                                                            //lista.add("print("+val+")");
                                                                             System.out.println("print("+val+")");
                                                                             Utilidades.Funcion.traducciontexto +=  "print("+val+")"+"\n";
-                                                                
+                                                                            //RESULT = lista;
                                                                             :}
 
 ;
 
-if ::=          RIF PARI expresion PARD LLAVEI listainstruccion LLAVED
-                | RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE LLAVEI listainstruccion LLAVED
-                | RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE if
+if ::=          RIF PARI expresion:exp PARD LLAVEI listainstruccion:inst LLAVED      {:
+                                                                            //LinkedList<String> lista = new LinkedList<>();
+                                                                            //lista.add("if solo "+exp+":");
+                                                                                      
+                                                                            //Utilidades.Funcion.contador++;
+                                                                            //lista.addAll(Utilidades.Funcion.tabulaciones(inst));
+                                                                            //Utilidades.Funcion.contador--;
+    
+                                                                            //RESULT = lista;
+                                                                            
+                                                                            System.out.println("if "+exp+":\n"+inst);
+                                                                            Utilidades.Funcion.traducciontexto +=  "if "+exp+":\n"+inst+"\n";
+                                                                           
+                                                                                      :}
+                | RIF PARI expresion:exp PARD LLAVEI listainstruccion:instuno LLAVED RELSE LLAVEI listainstruccion:instdos LLAVED {:
+                                                                                                              System.out.println("if "+exp+":\n"+instuno+"\n else: \n"+instdos);
+                                                                                                                Utilidades.Funcion.traducciontexto +=  "if "+exp+":\n"+instuno+"\n else: \n"+instdos+"\n";
+                                                                                                                :}
+                | RIF PARI expresion:exp PARD LLAVEI listainstruccion:inst LLAVED RELSE if                      {:
+                                                                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                                                                //lista.add("if con elif "+exp+":");
+                                                                                                                
+                                                                                                                //Utilidades.Funcion.contador++;
+                                                                                                                //lista.addAll(Utilidades.Funcion.tabulaciones(inst));
+                                                                                                                //Utilidades.Funcion.contador--;
+    
+                                                                                                                //RESULT = lista;
+                                                                                                                System.out.println("if "+exp+":\n"+inst);
+                                                                                                                Utilidades.Funcion.traducciontexto +=  "if "+exp+":\n"+inst+"\n";
+                                                                                                                :}
 ;
 
 while ::=       RWHILE PARI expresion PARD LLAVEI listainstruccion LLAVED

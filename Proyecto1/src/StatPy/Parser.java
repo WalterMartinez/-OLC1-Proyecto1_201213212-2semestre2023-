@@ -775,8 +775,8 @@ class CUP$Parser$actions {
               Object RESULT =null;
 		int listaleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
 		int listaright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
-		Object lista = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
-		  
+		LinkedList lista = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		 //Utilidades.Funcion.traduccion = lista; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instatpy",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -784,8 +784,17 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // listainstruccion ::= listainstruccion instruccion 
             {
-              Object RESULT =null;
-		 
+              LinkedList RESULT =null;
+		int listaleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int listaright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		LinkedList lista = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		
+                                                                //lista.addAll((LinkedList) val);
+                                                                //RESULT = (LinkedList) lista;
+                                                                
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("listainstruccion",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -793,11 +802,15 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // listainstruccion ::= instruccion 
             {
-              Object RESULT =null;
+              LinkedList RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		 
+                                        //LinkedList<String> lista = new LinkedList<>();
+                                        //lista.addAll((LinkedList) val);
+                                        //RESULT = (LinkedList) lista;
+                                         
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("listainstruccion",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -806,7 +819,10 @@ class CUP$Parser$actions {
           case 5: // instruccion ::= declaracion 
             {
               Object RESULT =null;
-		 
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		  
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -815,7 +831,10 @@ class CUP$Parser$actions {
           case 6: // instruccion ::= imprimir 
             {
               Object RESULT =null;
-
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		  
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -824,7 +843,10 @@ class CUP$Parser$actions {
           case 7: // instruccion ::= if 
             {
               Object RESULT =null;
-
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		  
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -873,6 +895,9 @@ class CUP$Parser$actions {
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
+                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                //lista.add(a.toString()+" = none");
+                                                                //RESULT = lista;
                                                                 System.out.println(a.toString()+" = none");
                                                                 Utilidades.Funcion.traducciontexto +=  a.toString()+" = none"+"\n";                                                                
                                                                 
@@ -893,7 +918,10 @@ class CUP$Parser$actions {
 		
                                                                 System.out.println(a.toString()+" = "+val);
                                                                 Utilidades.Funcion.traducciontexto +=  a.toString()+" = "+val+"\n";
-                                                                        
+                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                //lista.add(a.toString()+" = "+val);
+                                                                //RESULT = lista;              
+                                                                                
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("declaracion",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -911,7 +939,9 @@ class CUP$Parser$actions {
 		
                                                                 System.out.println(a.toString()+" = "+val);
                                                                 Utilidades.Funcion.traducciontexto +=  a.toString()+" = "+val+"\n";
-                                                                
+                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                //lista.add(a.toString()+" = "+val);
+                                                                //RESULT = lista;
 
                                                                 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("declaracion",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -926,9 +956,11 @@ class CUP$Parser$actions {
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
+                                                                            //LinkedList<String> lista = new LinkedList<>();
+                                                                            //lista.add("print("+val+")");
                                                                             System.out.println("print("+val+")");
                                                                             Utilidades.Funcion.traducciontexto +=  "print("+val+")"+"\n";
-                                                                
+                                                                            //RESULT = lista;
                                                                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("imprimir",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -938,7 +970,26 @@ class CUP$Parser$actions {
           case 16: // if ::= RIF PARI expresion PARD LLAVEI listainstruccion LLAVED 
             {
               Object RESULT =null;
-
+		int expleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).left;
+		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).right;
+		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		int instleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int instright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		LinkedList inst = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		
+                                                                            //LinkedList<String> lista = new LinkedList<>();
+                                                                            //lista.add("if solo "+exp+":");
+                                                                                      
+                                                                            //Utilidades.Funcion.contador++;
+                                                                            //lista.addAll(Utilidades.Funcion.tabulaciones(inst));
+                                                                            //Utilidades.Funcion.contador--;
+    
+                                                                            //RESULT = lista;
+                                                                            
+                                                                            System.out.println("if "+exp+":\n"+inst);
+                                                                            Utilidades.Funcion.traducciontexto +=  "if "+exp+":\n"+inst+"\n";
+                                                                           
+                                                                                      
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("if",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -947,7 +998,19 @@ class CUP$Parser$actions {
           case 17: // if ::= RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE LLAVEI listainstruccion LLAVED 
             {
               Object RESULT =null;
-
+		int expleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)).left;
+		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)).right;
+		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-8)).value;
+		int instunoleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)).left;
+		int instunoright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)).right;
+		LinkedList instuno = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-5)).value;
+		int instdosleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int instdosright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		LinkedList instdos = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		
+                                                                                                              System.out.println("if "+exp+":\n"+instuno+"\n else: \n"+instdos);
+                                                                                                                Utilidades.Funcion.traducciontexto +=  "if "+exp+":\n"+instuno+"\n else: \n"+instdos+"\n";
+                                                                                                                
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("if",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -956,7 +1019,24 @@ class CUP$Parser$actions {
           case 18: // if ::= RIF PARI expresion PARD LLAVEI listainstruccion LLAVED RELSE if 
             {
               Object RESULT =null;
-
+		int expleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)).left;
+		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)).right;
+		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-6)).value;
+		int instleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int instright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		LinkedList inst = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		
+                                                                                                                //LinkedList<String> lista = new LinkedList<>();
+                                                                                                                //lista.add("if con elif "+exp+":");
+                                                                                                                
+                                                                                                                //Utilidades.Funcion.contador++;
+                                                                                                                //lista.addAll(Utilidades.Funcion.tabulaciones(inst));
+                                                                                                                //Utilidades.Funcion.contador--;
+    
+                                                                                                                //RESULT = lista;
+                                                                                                                System.out.println("if "+exp+":\n"+inst);
+                                                                                                                Utilidades.Funcion.traducciontexto +=  "if "+exp+":\n"+inst+"\n";
+                                                                                                                
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("if",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

@@ -26,6 +26,9 @@ public static void imprimirlista (){
             
             try {
             // Código que puede arrojar una excepción
+            System.out.println("");
+            System.out.println("#######################################################");    
+            System.out.println("");
             traduccion.forEach((valor) -> {
                 System.out.println(valor);
                 
@@ -74,11 +77,11 @@ public static void analizadores(String ruta, String jflexFile, String cupFile){
             System.out.println(e);
         } 
     }
-     public static LinkedList<String> tabulaciones (LinkedList<String> lista){
+     public static LinkedList<String> tabulaciones(LinkedList<String> lista){
          String tabs = "";
          for(int i = 0; i < contador; i++){
              tabs = "\t"+tabs;
-         }
+         } 
          
          for(int i =0; i< lista.size(); i++){
              lista.set(i, tabs+lista.get(i));

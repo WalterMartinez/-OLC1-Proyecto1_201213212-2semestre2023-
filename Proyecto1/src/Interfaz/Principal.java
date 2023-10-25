@@ -164,6 +164,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem8);
 
         jMenuItem9.setText("Analizador 2 : JSON");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
         jMenuBar1.add(jMenu2);
@@ -265,9 +270,14 @@ public class Principal extends javax.swing.JFrame {
             jTextArea2.setText(Funcion.traducciontexto);
             //System.out.println(textoaanalizar);
             
-            Funcion.imprimirlista();
+            //Funcion.imprimirlista();
             
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        Funcion.imprimirlista();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
